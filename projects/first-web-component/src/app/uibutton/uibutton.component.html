@@ -1,0 +1,145 @@
+
+<article id="calculator" style="margin: 12px !important">
+
+
+  <div class="card mb-3 mt-4">
+    <div class="card-title">
+      <div class="title animated-box in">{{ title }}</div>
+    </div>
+    <img [src]="imageurl" class="card-img-top" />
+
+
+    <div class="card-body text-center pb-4">
+      <p class="card-text">Calculate the square footage ...</p>
+      <div class="wrapper">
+        <div class="box left">
+          <mdb-form-control>
+            <input [(ngModel)]="inputwidth" (change)="updatetotalbywidthxlength()" mdbInput type="number" id="width"
+              class="w-l-input form-control" min="1" max="1000000" />
+            <label mdbLabel class="form-label" for="width">Width</label>
+          </mdb-form-control>
+        </div>
+        <div class="box right">
+          <mdb-form-control>
+            <input [(ngModel)]="inputlength" (change)="updatetotalbywidthxlength()" mdbInput type="number" id="length"
+              class="w-l-input form-control" min="1" max="1000000" />
+            <label mdbLabel class="form-label" for="length">Length</label>
+          </mdb-form-control>
+        </div>
+
+        <div class="box full mt-4">
+          <p class="card-text">{{ sqftmsg }}</p>
+          <div style="height:45px;">
+          <mdb-form-control *ngIf="!inputlength && !inputwidth && !totaldetermined">
+            <input [(ngModel)]="inputtotal" mdbInput type="number" id="total"
+              class="w-l-input form-control form-control-lg" min="1" max="1000000" />
+            <label mdbLabel class="form-label" for="total">Total Square Feet</label>
+
+          </mdb-form-control>
+          <span class="totalsqft" *ngIf="totaldetermined">{{ inputtotal }}</span>
+         </div>
+
+          <button (click)="updatetotalsavingsif()" class="mt-3 btn" [ngClass]="{'btn-outline-gray': totaldetermined, 'btn-success': !totaldetermined}">Submit</button>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <ul class="list-group list-group-flush text-dark">
+    <li class="list-group-item pt-3 pb-3" id="li-fertilizer">
+      <h5 class="mb-1">Fertilizer</h5>
+
+      <p class="description lh-sm">Annual cost to Refertilize @ ${{ fertilizecost }}/ft<sup>2</sup></p>
+
+      <div class="grid">
+
+          <div class="badge bg-success"
+            [ngClass]="{ transparent: !inputtotal || !showresults, visible: inputtotal && showresults }"
+            id="fertilizerbadge">
+            ${{ fixedformat(fertilizetotal) }}
+      </div>
+      <div class="range" [ngClass]="{ 'range-transparent': !inputtotal || !showresults, 'range-visible': inputtotal && showresults }">
+        ${{fixedformat(fertilizetotal-(fertilizetotal*costvariance))}} - ${{fixedformat(fertilizetotal+(fertilizetotal*costvariance))}}
+      </div>
+      </div>
+
+    </li>
+
+    <li class="list-group-item pt-3 pb-3" id="li-seed">
+      <h5 class="mb-1">Seed</h5>
+
+      <p class="description lh-sm">Annual cost to Reseed @ ${{ seedcost }}/ft<sup>2</sup></p>
+      <div class="badge bg-success"
+        [ngClass]="{ transparent: !inputtotal || !showresults, visible: inputtotal && showresults }" id="seedbadge">
+        ${{ fixedformat(seedtotal) }}
+      </div>
+    </li>
+    <li class="list-group-item pt-3 pb-3" id="li-mow">
+      <h5 class="mb-1">Mowing</h5>
+
+      <p class="description lh-sm">Annual cost for mowing @ ${{ mowcost }}/per ft<sup>2</sup>
+      </p>
+<div class="grid">
+      <div class="badge bg-success"
+        [ngClass]="{ transparent: !inputtotal || !showresults, visible: inputtotal && showresults }" id="mowingbadge">
+        ${{ fixedformat(mowtotal) }}
+      </div>
+      <div class="range" [ngClass]="{ 'range-transparent': !inputtotal || !showresults, 'range-visible': inputtotal && showresults }">
+        ${{fixedformat(mowtotal-(mowtotal*costvariance))}} - ${{fixedformat(mowtotal+(mowtotal*costvariance))}}
+      </div>
+      </div>
+    </li>
+    <li class="list-group-item pt-3 pb-3 p-3 wave">
+      <div class="row">
+        <div class="col-3 p-3 text-center">
+          <div id="timebadge" [ngClass]="{ 'rotate-start': !inputtotal || !showresults, 'rotate-end': inputtotal }">
+            <div class="rotate-wrapper">
+              <span class="badge bg-light rounded-pill mr-1"
+                [ngClass]="{ 'transparent-time': !inputtotal || !showresults, 'visible-time': inputtotal }" id="time">{{
+                numberWithCommas(totalhourssavings) }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-9 p-3">
+          <div style="padding-left:12px;">
+            <h5 class="mb-1">{{ hoursmsg }}</h5>
+            <p class="description lh-sm">spent mowing, annually.</p>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item pt-3 pb-3 wave">
+
+      <div class="row">
+        <div class="col-6 p-3">
+          <h5 class="mb-1">Water Conservation</h5>
+          <p class="description lh-sm">Save money and water!</p>
+        </div>
+
+        <div class="col-6 p-3">
+          <span class="badge bg-info rounded-pill"
+            [ngClass]="{ transparent: !inputtotal || !showresults, visible: inputtotal && showresults }" id="water">{{
+            numberWithCommas(totalwatersavings) + ' gal' }}</span>
+        </div>
+      </div>
+    </li>
+
+    <li class="list-group-item list-group-item-dark pt-3 pb-3 total-savings">
+      <h5 class="mb-1">total Savings</h5>
+
+      <div [ngClass]="{ transparent:  !inputtotal || !showresults, visible: inputtotal && showresults }"
+        class="badge bg-light text-dark rounded-pill" id="totalsavings">
+        ${{ fixedformat(totalcostsavings) }}
+      </div>
+      <div class="totalrange" [ngClass]="{ 'range-transparent': !inputtotal || !showresults, 'range-visible': inputtotal && showresults }">
+        ${{ fixedformat(totalrangedsavingslow) }} - ${{ fixedformat(totalrangedsavingshigh) }}
+      </div>
+    </li>
+    <li [ngClass]="{ 'thankyou-transparent': !inputtotal || !showresults, 'thankyou-visible': inputtotal && showresults }" id="li-auth" class="list-group-item list-group-item-white pt-3 pb-5">
+      <app-auth *ngIf="inputtotal" [totalsqft]="inputtotal"></app-auth>
+        </li>
+        <li class="list-group-item pt-3 pb-3 wave" style="text-align:right;font-size:7px;">V {{ internalversion }} / {{ externalversion }}</li>
+  </ul>
+</article>

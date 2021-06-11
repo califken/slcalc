@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "synlawncalculator": {
+      "hosting": {
+        "FirstWebComponent": [
+          "synlawncalculator"
+        ]
+      }
+    }
+  }
+}

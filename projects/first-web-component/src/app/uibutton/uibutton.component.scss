@@ -1,0 +1,471 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@900&family=Roboto:wght@700&display=swap');
+
+article {
+  font-family: Lato, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.guide div {
+  font-size: 1.5em;
+  color: #999;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.text-green {
+  color: #70AE34;
+}
+
+.guide h1 {
+  text-transform: uppercase;
+  margin: 0;
+  margin-top: -10px;
+  font-size: 2.5em;
+  position: relative;
+  font-weight: 900;
+  // Variable font
+  font-family: "Roboto", sans-serif;
+  line-height: normal;
+  // font-variation-settings: 'INLN' 400, 'SWRM' 1000;
+
+
+  // Background clip to image
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  // background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/209708058_b5a5fb07a6_o.jpg);
+  background-size: 30%;
+  background-repeat: repeat;
+
+  text-shadow: 2px 2px 5px rgba(#2a4308, 0.4);
+  animation: grow 3s linear infinite alternate;
+
+  &:before {
+    text-shadow:
+      1px 1px 2px rgba(#2a4308, 0.5),
+      -1px 1px 2px rgba(#2a4308, 0.5),
+      -1px -1px 2px rgba(#2a4308, 0.5),
+      1px -1px 2px rgba(#2a4308, 0.5),
+      3px 3px 20px rgba(#000, 0.5);
+  }
+
+  &:after {
+    color: #421F00;
+    font-variation-settings: 'INLN'0;
+  }
+}
+
+@keyframes grow {
+  0% {
+    font-variation-settings: 'INLN'400, 'SWRM'1000;
+  }
+
+  100% {
+    font-variation-settings: 'INLN'400, 'SWRM'0;
+  }
+}
+
+.guide h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+
+  &:after,
+  &:before {
+    content: attr(data-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+
+.title {
+  text-align: center;
+  padding: 6px;
+  margin: 0px;
+  border-bottom: 1px dotted #333;
+  margin-bottom: 0px;
+  text-shadow: 0px 0px 1px #000;
+  background: rgba(255, 255, 255, .8);
+  color: #000;
+}
+
+.card-title {
+  margin-bottom: 0px;
+}
+
+.title .ft {
+  font-size: 2em;
+}
+
+.title sup {
+  font-size: 1em;
+}
+
+.title .calculator {
+  font-style: italic;
+  font-weight: light;
+  color: #aaa;
+}
+
+.description {
+  font-size: .7em;
+}
+
+#calculator {
+  margin: 124px;
+}
+
+
+.animated-box {
+  font-family: 'Lato';
+  text-align: center;
+  border-radius: 4px;
+}
+
+.animated-box h1 {
+  font-weight: 200;
+  font-size: 40px;
+  text-transform: uppercase;
+}
+
+.animated-box p {
+  font-weight: 200;
+}
+
+/* The animation starts here */
+.animated-box {
+  position: relative;
+}
+
+.animated-box:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 4px;
+  background: linear-gradient(120deg, #70AE34, #0575E6, #00F260);
+  background-size: 300% 300%;
+  clip-path: polygon(0% 100%, 3px 100%, 3px 3px, calc(100% - 3px) 3px, calc(100% - 3px) calc(100% - 3px), 3px calc(100% - 3px), 3px 100%, 100% 100%, 100% 0%, 0% 0%);
+}
+
+.animated-box.in:after {
+  animation: frame-enter 1s forwards ease-in-out reverse, gradient-animation 4s ease-in-out infinite;
+}
+
+/* motion */
+@keyframes gradient-animation {
+  0% {
+    background-position: 15% 0%;
+  }
+
+  50% {
+    background-position: 85% 100%;
+  }
+
+  100% {
+    background-position: 15% 0%;
+  }
+}
+
+@keyframes frame-enter {
+  0% {
+    clip-path: polygon(0% 100%, 3px 100%, 3px 3px, calc(100% - 3px) 3px, calc(100% - 3px) calc(100% - 3px), 3px calc(100% - 3px), 3px 100%, 100% 100%, 100% 0%, 0% 0%);
+  }
+
+  25% {
+    clip-path: polygon(0% 100%, 3px 100%, 3px 3px, calc(100% - 3px) 3px, calc(100% - 3px) calc(100% - 3px), calc(100% - 3px) calc(100% - 3px), calc(100% - 3px) 100%, 100% 100%, 100% 0%, 0% 0%);
+  }
+
+  50% {
+    clip-path: polygon(0% 100%, 3px 100%, 3px 3px, calc(100% - 3px) 3px, calc(100% - 3px) 3px, calc(100% - 3px) 3px, calc(100% - 3px) 3px, calc(100% - 3px) 3px, 100% 0%, 0% 0%);
+  }
+
+  75% {
+    -webkit-clip-path: polygon(0% 100%, 3px 100%, 3px 3px, 3px 3px, 3px 3px, 3px 3px, 3px 3px, 3px 3px, 3px 0%, 0% 0%);
+  }
+
+  100% {
+    -webkit-clip-path: polygon(0% 100%, 3px 100%, 3px 100%, 3px 100%, 3px 100%, 3px 100%, 3px 100%, 3px 100%, 3px 100%, 0% 100%);
+  }
+}
+
+body {
+  background-image: url(https://synlawnsacramento.com/wp-content/uploads/2019/11/SynLawn-SAC-Landscape-1500px-web.jpg);
+}
+
+.editvars {
+  box-shadow: 1px 12px 12px inset;
+  border: 3px solid;
+}
+
+#calculator {
+  max-width: 370px;
+}
+
+
+.wrapper {
+  display: grid;
+  grid-gap: 0px;
+  grid-template-columns: 50% 50% 100%;
+  grid-column-gap: 4px;
+}
+
+
+.full {
+  grid-column: 1 / 3;
+  grid-row: 2;
+}
+
+.left {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.right {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.transparent {
+  opacity: 0;
+  width: 0px;
+
+  transition-delay: 8s;
+  background-color: #00ff15;
+  transition: opacity 3s;
+}
+
+.visible {
+  opacity: 1;
+  width: 150px;
+
+  background-color: #00800a;
+  transition-duration: 3s;
+  transition-timing-function: ease-out;
+  transition-delay: 8s;
+  transition: opacity 4s;
+}
+
+.hidden-transparent {
+  opacity: 0;
+}
+
+.visible-opaque {
+  opacity: 1;
+}
+
+.range-transparent {
+  opacity: 0;
+  color: #FFF;
+  transition: opacity 3s, width 0s, background-color 3s, color 3s;
+
+}
+
+.range-visible {
+  opacity: 1;
+  color: #999;
+  transition: opacity 3s, width 0s, background-color 3s, color 3s;
+}
+
+.thankyou-transparent {
+  opacity: 0;
+  transition: opacity 3s, width 0s, background-color 3s, color 3s;
+
+}
+
+.thankyou-visible {
+  opacity: 1;
+  transition: opacity 3s, width 0s, background-color 3s, color 3s;
+}
+
+.range {
+  text-align: right;
+  font-style: italic;
+  font-size: .9em;
+  font-weight: 500;
+  margin-top: 4px;
+
+  width: 150px;
+}
+
+.totalrange {
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 200;
+  margin-top: 14px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+}
+
+#calculator .bg-success {
+  font-size: 1em;
+  box-shadow: 1px 24px 24px rgba(73, 155, 1, 0.8);
+}
+
+#calculator .bg-info {
+  font-size: 1em;
+  box-shadow: 1px 24px 24px rgba(0, 240, 252, 0.8);
+}
+
+#calculator .total-savings {
+  font-size: 2.5em;
+  text-align: center;
+}
+
+#calculator #totalsavings {
+
+  font-size: 1.25em;
+}
+
+#timeicon {
+  width: 40px;
+}
+
+#time {
+  color: #333;
+  font-weight: 900;
+  font-size: 1.4em;
+  margin-right: 24px;
+
+}
+
+
+
+
+.transparent-time {
+  opacity: 0;
+  border: 2px solid transparent;
+  background-color: transparent;
+  transition-delay: 8s;
+  transition: opacity 3s, width 3s, background-color 3s, border 3s, transform 3s;
+
+}
+
+.visible-time {
+  opacity: 1;
+  background-color: #eee;
+  border: 2px solid #222;
+  transition-delay: 8s;
+  transition: opacity 3s, width 3s, background-color 3s, border 3s;
+
+}
+
+.rotate-start,
+.rotate-end {
+  perspective: 600px;
+}
+
+.rotate-end .rotate-wrapper {
+  transition-duration: 3s;
+  transition-timing-function: ease-out;
+  transition-delay: 8s;
+  transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateX(0px) translateY(0px) translateZ(0px);
+}
+
+.rotate-start .rotate-wrapper {
+  transition-timing-function: ease-out;
+  transition-duration: 3s;
+  transition-delay: 8s;
+  transform: rotateX(-13deg) rotateY(-38deg) rotateZ(1200deg) translateX(0px) translateY(0px) translateZ(0px)
+}
+
+#fertilizerbadge {
+  transition-delay: 2s;
+}
+
+#li-fertilizer .range-visible {
+  transition-delay: 3s;
+}
+
+#seedbadge {
+  transition-delay: 4s;
+}
+
+#mowingbadge {
+  transition-delay: 6s;
+}
+
+#timebadge,
+.visible-time,
+.transparent-time {
+  transition-delay: 8s;
+}
+
+.range-visible {
+  transition-delay: 8s;
+}
+
+#water {
+  transition-delay: 10s;
+}
+
+#calculator {
+  box-shadow: 2px 12px 36px rgba(0, 0, 0, .5);
+}
+
+.thankyou-visible {
+  transition-delay: 15s;
+}
+
+// #fertilizerbadge {
+//   background: rgb(79,24,3);
+// background: linear-gradient(180deg, rgba(79,24,3,1) 35%, rgba(56,16,0,1) 100%);
+// box-shadow: 0px 3px 1px #000000;
+
+// }
+// #seedbadge {
+//   background: rgb(255,244,233);
+// background: linear-gradient(180deg, rgba(255,244,233,1) 0%, rgba(241,216,191,1) 100%);
+// }
+
+#totalsavings {
+  width: fit-content;
+}
+
+#li-auth {
+  background: rgb(0, 99, 1);
+  background: linear-gradient(0deg, rgba(0, 99, 1, 1) 0%, rgba(0, 201, 10, 1) 4%, rgba(193, 249, 255, 1) 5%, rgba(45, 203, 253, 1) 100%);
+  padding-bottom: 24px;
+  min-height: 270px;
+}
+
+.totalsqft {
+  font-size: 1.5em;
+}
+
+input:focus {
+  background: transparent;
+}
+article#calculator  {
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=email]:focus,
+input[type=tel]:focus,
+input[type=date]:focus,
+input[type=month]:focus,
+input[type=week]:focus,
+input[type=time]:focus,
+input[type=number]:focus,
+input[type=search]:focus,
+input[type=url]:focus,
+textarea:focus {
+  background-color: transparent !important;
+}
+}
